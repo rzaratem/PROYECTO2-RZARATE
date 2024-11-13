@@ -1,0 +1,110 @@
+<!--Cambiando el title-->
+{% block title %} Lista de Usuarios con Python{% endblock %}
+<!--Inicio del block-->
+{% block body %}
+
+<div class="card" style="border-radius: 0px !important">
+  <div class="row justify-content-center mb-2">
+    <div class="col-md-12 mb-4">
+      <h3 class="text-center mt-5 mb-3">LISTA DE USUARIOS DESDE BD</h3>
+      <hr />
+    </div>
+
+    <div class="row justify-content-end">
+      <div class="col-md-6 mt-4 py-2">
+        <input
+          type="search"
+          id="search"
+          class="form-control border-0 shadow-none"
+          placeholder="Buscar User..."
+          onkeyup="buscadorTable('tbl_empleados')" />
+      </div>
+    </div>
+
+    <div class="row justify-content-center mb-2">
+      <div class="table-responsive text-nowrap table-hover">
+        <table
+          table-hover
+          id="Users"
+          class="table table-striped table-bordered"
+          cellspacing="0"
+          width="100%">
+          <thead>
+            <tr>
+              <th style="text-align: left">#</th>
+              <th style="text-align: left">Nombre</th>
+              <th style="text-align: left">Email</th>
+              <th style="text-align: left">Edad</th>
+              <th style="text-align: left">Fecha Registro</th>
+              <th style="text-align: left">Fecha Update</th>
+            </tr>
+          </thead>
+          
+          <center>
+          <tr>
+           
+            {% for user in users %}
+
+              <td>{{user.id }}</td>
+              <td>{{user.name }}</td>
+              <td>{{user.email}}</td>
+              <td>{{user.age}}</td>
+              <td>{{user.created_at}}</td>
+              <td>{{user.updated_at}}</td>
+            
+            </tr>
+        </center>
+
+
+             {% endfor %}
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+
+<!--------------------------------------------------------------
+
+
+
+
+
+<div>
+    {% for user in users %}
+
+    <div>
+      <th>{{user.name }}</th>
+      <th>{{user.email}}</th>
+      <th>{{user.age}}</th>
+      <th>{{user.created_at}}</th>
+      <th>{{user.updated_at}}</th>
+      
+      </div>
+
+      {% endfor %}
+    </div>
+
+
+    
+  <div>
+    {% for user in users %}
+
+    <div>
+      <p>{{user.name}}</P>
+      <p>{{user.email}}</P>
+      <p>{{user.age}}</P>
+      <p>{{user.created_at}}</P>
+      <p>{{user.updated_at}}</P>
+      
+      </div>
+
+      {% endfor %}
+    </div>
+
+
+-->

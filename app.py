@@ -1,0 +1,47 @@
+from flask import Flask
+from dotenv import load_dotenv
+from db import db, init_db
+from models.user import User
+from controllers.user_controller import user_blueprint
+from controllers.user_controller import users_routes
+from flask_sqlalchemy import SQLAlchemy
+
+from datetime import datetime
+import os
+load_dotenv()
+#app = Flask(__name__)
+app=Flask(__name__,template_folder='views')
+
+
+
+
+
+#app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql+pymysql://{os.getenv('DB_USERNAME')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}"
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv('DB_STRING_CONNECTION')
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+print(app.config["SQLALCHEMY_DATABASE_URI"])
+
+#db=SQLAlchemy(app)
+db.init_app(app)
+init_db(app)
+
+users_routes(app)
+
+#class User(db.Model):
+#   __tablename__ ='users'
+#   id=db.Column(db.Integer, primary_key=True)
+  
+app.register_blueprint(user_blueprint)  
+  
+  #def init_db(app):
+if __name__ == '__main__':
+    app.run(debug=True)
+
+""" @app.route('/')
+def index():
+    return "Hello world!"
+app.register_blueprint(user_blueprint)
+
+if __name__ == '__main__':
+    app.run(debug=True) """
