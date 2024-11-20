@@ -1,9 +1,9 @@
 from flask import Flask
 from dotenv import load_dotenv
 from db import db, init_db
-from models.user import User
-from controllers.user_controller import user_blueprint
-from controllers.user_controller import users_routes
+from models.heladeria import Ingrediente,Producto
+from controllers.heladeria_controller import heladeria_blueprint
+from controllers.heladeria_controller import heladerias_routes
 from flask_sqlalchemy import SQLAlchemy
 
 from datetime import datetime
@@ -26,13 +26,13 @@ print(app.config["SQLALCHEMY_DATABASE_URI"])
 db.init_app(app)
 init_db(app)
 
-users_routes(app)
+heladerias_routes(app)
 
 #class User(db.Model):
 #   __tablename__ ='users'
 #   id=db.Column(db.Integer, primary_key=True)
   
-app.register_blueprint(user_blueprint)  
+app.register_blueprint(heladeria_blueprint)  
   
   #def init_db(app):
 if __name__ == '__main__':
